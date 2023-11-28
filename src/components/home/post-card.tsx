@@ -4,7 +4,7 @@ import MessageDotsIcon from "../icons/message-dots-icon";
 export interface IHomePostCard {
   name: string;
   userName: string;
-  timestamp: Date;
+  timeStamp: Date;
   location: string;
   description: string;
   imageUrl?: string;
@@ -13,7 +13,7 @@ export interface IHomePostCard {
 function HomePostCard({
   name,
   userName,
-  timestamp,
+  timeStamp,
   location,
   description,
 }: IHomePostCard) {
@@ -28,7 +28,7 @@ function HomePostCard({
           <span className="font-semibold text-slate-500">@{userName}</span>
         </div>
         <div className="font-semibold text-slate-500">
-          <span>{formatRelativeTime(timestamp)}</span>
+          <span>{formatRelativeTime(timeStamp)}</span>
           <span> · </span>
           <span>{location}</span>
         </div>

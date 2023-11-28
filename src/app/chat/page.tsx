@@ -1,5 +1,14 @@
-import ChatProfileCard from "@/components/chat/chat-profile-card";
+import ChatProfileCard, {
+  IChatProfileCard,
+} from "@/components/chat/chat-profile-card";
 import SearchIcon from "@/components/icons/search-icon";
+
+const dummyData: IChatProfileCard = {
+  userName: "donaltruk2231",
+  timeStamp: new Date(2023, 7, 15, 12, 30, 0),
+  lastMessage:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iusto recusandae velit repudiandae consequuntur reprehenderit perspiciatis mollitia vero molestias eius, consectetur adipisci eaque illum aut esse, aliquam culpa iste quam?",
+};
 
 function ChatPage() {
   return (
@@ -15,10 +24,10 @@ function ChatPage() {
         </div>
       </section>
       <section>
-        <ChatProfileCard />
-        <ChatProfileCard />
-        <ChatProfileCard />
-        <ChatProfileCard />
+        <ChatProfileCard {...dummyData} />
+        <ChatProfileCard {...dummyData} />
+        <ChatProfileCard {...dummyData} />
+        <ChatProfileCard {...dummyData} />
       </section>
     </main>
   );
