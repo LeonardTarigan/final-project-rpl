@@ -10,8 +10,14 @@ import UserIcon from "../icons/user-icon";
 function Sidebar() {
   const path = usePathname();
 
+  const excludedPaths = ["/auth"];
+
   return (
-    <nav className="sticky top-0 flex h-screen basis-[30%] flex-col items-center justify-between p-5">
+    <nav
+      className={`sticky top-0 flex h-screen basis-[30%] flex-col items-center justify-between p-5 ${
+        !excludedPaths.includes(path) ? "hidden" : "visible"
+      }`}
+    >
       <div className="flex w-full flex-col items-center gap-10">
         <Link href={"/"}>
           <Logo />
