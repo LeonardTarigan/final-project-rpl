@@ -15,7 +15,9 @@ function Sidebar() {
   return (
     <nav
       className={`sticky top-0 flex h-screen basis-[30%] flex-col items-center justify-between p-5 ${
-        !excludedPaths.includes(path) ? "hidden" : "visible"
+        excludedPaths.some((excludedPath) => path.startsWith(excludedPath))
+          ? "hidden"
+          : "visible"
       }`}
     >
       <div className="flex w-full flex-col items-center gap-10">
@@ -39,9 +41,9 @@ function Sidebar() {
           </li>
           <li>
             <Link
-              href={"/chats"}
+              href={"/chat"}
               className={`flex w-full items-center gap-2 rounded-md p-2 font-semibold  transition-all duration-150  ${
-                path.includes("/chats")
+                path.startsWith("/chat")
                   ? "bg-indigo-600 text-white"
                   : "text-slate-500 hover:bg-slate-900 hover:text-white"
               }`}
@@ -54,7 +56,7 @@ function Sidebar() {
             <Link
               href={"/profile"}
               className={`flex w-full items-center gap-2 rounded-md p-2 font-semibold  transition-all duration-150  ${
-                path.includes("/profile")
+                path.startsWith("/profile")
                   ? "bg-indigo-600 text-white"
                   : "text-slate-500 hover:bg-slate-900 hover:text-white"
               }`}

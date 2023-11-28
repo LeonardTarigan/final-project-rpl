@@ -8,7 +8,7 @@ import { useLocation } from "@/hooks/useLocation";
 const dummyData: IHomePostCard = {
   name: "Donald Truck",
   userName: "donaltruk2231",
-  timestamp: new Date(2023, 10, 27, 12, 30, 0),
+  timeStamp: new Date(2023, 10, 27, 12, 30, 0),
   description:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iusto recusandae velit repudiandae consequuntur reprehenderit perspiciatis mollitia vero molestias eius, consectetur adipisci eaque illum aut esse, aliquam culpa iste quam?",
   location: "FILKOM",
