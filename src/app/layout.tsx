@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={mainFont.className}>
         <div className="mx-auto flex max-w-screen-md">
           <Sidebar />
-          <div className="basis-[70%]">{children}</div>
+          {children}
         </div>
       </body>
     </html>

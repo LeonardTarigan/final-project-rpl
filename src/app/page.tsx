@@ -20,7 +20,7 @@ export default function Home() {
   const options = ["FILKOM", "FIA", "FEB"];
 
   return (
-    <main className="grow border-x border-slate-700">
+    <main className="grow basis-[70%] border-x border-slate-700">
       <section className="sticky top-0 mb-3 flex gap-3 bg-slate-950 p-5 text-sm">
         <div className="flex grow items-center gap-2 rounded-full border-2 border-transparent bg-slate-800 px-4 focus-within:border-white">
           <SearchIcon className="h-5 w-5 text-slate-400" />
