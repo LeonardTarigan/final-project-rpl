@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Sidebar from "@/components/shared/sidebar";
 
 const mainFont = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "LOS",
+  title: "LOS | Home",
   description: "Aplikasi Barang Hilang",
 };
 
@@ -16,7 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={mainFont.className}>{children}</body>
+      <body className={mainFont.className}>
+        <div className="mx-auto flex max-w-screen-md">
+          <Sidebar />
+          <div className="basis-[70%]">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
