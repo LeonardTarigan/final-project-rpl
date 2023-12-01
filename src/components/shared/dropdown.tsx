@@ -37,7 +37,7 @@ export default function Dropdown({
         >
           <Menu.Items
             className={
-              "absolute right-0 mt-2 flex max-h-80 w-full min-w-[10rem] flex-col overflow-hidden overflow-y-auto rounded-lg bg-slate-800 md:w-fit"
+              "absolute right-0 mt-2 flex max-h-44 w-full min-w-[10rem] flex-col overflow-hidden overflow-y-auto rounded-lg bg-slate-800 p-2 md:w-fit"
             }
           >
             {options.map((item, index) => {
@@ -48,7 +48,7 @@ export default function Dropdown({
                       onClick={() => dispatch(item)}
                       className={`${
                         active && "bg-indigo-600"
-                      } p-2 text-sm font-medium`}
+                      } cursor-pointer rounded-md p-2 text-sm font-medium transition-all duration-150`}
                     >
                       {item}
                     </div>
