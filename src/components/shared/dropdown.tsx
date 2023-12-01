@@ -16,11 +16,11 @@ export default function Dropdown({
   dispatch,
 }: IDropdown) {
   return (
-    <div className="relative">
-      <Menu>
+    <Menu>
+      <div className="w-full md:w-max">
         <Menu.Button
           className={
-            "relative flex items-center gap-2 rounded-full bg-slate-800 px-5 py-2 text-slate-400"
+            "relative flex w-full items-center justify-between gap-2 rounded-full bg-slate-800 px-5 py-2 font-medium text-slate-400 md:justify-start"
           }
         >
           <span>{selectedOption}</span>
@@ -33,10 +33,11 @@ export default function Dropdown({
           leave="transition duration-75 ease-out"
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
+          className={" w-full"}
         >
           <Menu.Items
             className={
-              "absolute right-0 mt-2 flex max-h-80 w-fit min-w-[10rem] flex-col overflow-hidden overflow-y-auto rounded-lg bg-slate-800"
+              "absolute right-0 mt-2 flex max-h-80 w-full min-w-[10rem] flex-col overflow-hidden overflow-y-auto rounded-lg bg-slate-800 md:w-fit"
             }
           >
             {options.map((item, index) => {
@@ -45,7 +46,9 @@ export default function Dropdown({
                   {({ active }) => (
                     <div
                       onClick={() => dispatch(item)}
-                      className={`${active && "bg-indigo-600"} p-2`}
+                      className={`${
+                        active && "bg-indigo-600"
+                      } p-2 text-sm font-medium`}
                     >
                       {item}
                     </div>
@@ -55,7 +58,7 @@ export default function Dropdown({
             })}
           </Menu.Items>
         </Transition>
-      </Menu>
-    </div>
+      </div>
+    </Menu>
   );
 }

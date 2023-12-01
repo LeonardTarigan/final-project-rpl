@@ -1,6 +1,8 @@
+import PapperPlaneIcon from "@/components/icons/papper-plane-icon";
+
 function ChatDetailPage() {
   return (
-    <main className="flex h-screen grow basis-[70%] flex-col justify-between border-x border-slate-700">
+    <main className="flex h-screen grow basis-[70%] flex-col justify-between border-x border-slate-700 pb-16 sm:pb-0">
       <section className="flex gap-2 bg-slate-900 p-5 text-sm">
         <div className="basis-[10%]">
           <div className="aspect-square rounded-full bg-slate-800"></div>
@@ -21,6 +23,9 @@ function ChatDetailPage() {
           rows={1}
           className="w-full resize-none rounded-full bg-slate-800 px-4 py-2 placeholder:font-semibold placeholder:text-slate-500"
         />
+        <button>
+          <PapperPlaneIcon className="h-7 w-7 fill-slate-500 transition-all duration-150 hover:fill-indigo-600 active:translate-x-1" />
+        </button>
       </section>
     </main>
   );

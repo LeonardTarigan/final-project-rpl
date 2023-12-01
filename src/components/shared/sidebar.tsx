@@ -14,10 +14,10 @@ function Sidebar() {
 
   return (
     <nav
-      className={`sticky top-0 flex h-screen basis-[30%] flex-col items-center justify-between p-5 ${
+      className={`sticky top-0 h-screen basis-[30%] flex-col items-center justify-between p-5 ${
         excludedPaths.some((excludedPath) => path.startsWith(excludedPath))
           ? "hidden"
-          : "visible"
+          : "visible hidden sm:flex"
       }`}
     >
       <div className="flex w-full flex-col items-center gap-10">
