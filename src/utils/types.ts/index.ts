@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface IPostCard {
   name: string;
   userName: string;
@@ -9,4 +11,9 @@ export interface IPostCard {
 
 export interface IProfilePostCard extends IPostCard {
   isResolved: boolean;
+}
+
+export interface IModal {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }

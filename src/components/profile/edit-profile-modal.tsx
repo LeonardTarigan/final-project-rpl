@@ -1,11 +1,7 @@
+import { IModal } from "@/utils/types.ts";
 import { Dialog, Transition } from "@headlessui/react";
-import { Dispatch, Fragment, SetStateAction } from "react";
+import { Fragment } from "react";
 import XIcon from "../icons/x-icon";
-
-interface IModal {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-}
 
 function EditProfileModal({ isOpen, setIsOpen }: IModal) {
   return (
@@ -28,7 +24,7 @@ function EditProfileModal({ isOpen, setIsOpen }: IModal) {
       >
         <Dialog.Panel
           className={
-            "min-w-[40%] max-w-screen-md rounded-lg bg-slate-900 p-5 px-5"
+            "mx-5 min-w-[40%] max-w-screen-md rounded-lg bg-slate-900 p-5"
           }
         >
           <Dialog.Title
@@ -74,7 +70,7 @@ function EditProfileModal({ isOpen, setIsOpen }: IModal) {
               />
             </div>
           </div>
-          <button className="mt-10 w-full rounded-lg bg-indigo-600 py-2 font-bold transition-all duration-150 hover:bg-indigo-500 active:translate-y-1">
+          <button className="mt-10 w-full rounded-lg bg-sky-500 py-2 font-bold transition-all duration-150 hover:bg-sky-400 active:translate-y-1">
             Save Changes
           </button>
         </Dialog.Panel>
