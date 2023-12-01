@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={mainFont.className}>
-        <div className="mx-auto flex max-w-screen-md">
+        <div className="relative mx-auto flex max-w-screen-md">
           <Sidebar />
           <BottomNav />
           {children}

@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <main className="grow basis-[70%] border-x border-slate-700">
-      <div className="flex items-center justify-center pb-3 pt-5">
+      <div className="flex items-center justify-center pb-3 pt-5 sm:hidden">
         <div className="relative aspect-[16/5] w-[30%]">
           <Image src={"/logo.png"} alt="Logo" fill />
         </div>

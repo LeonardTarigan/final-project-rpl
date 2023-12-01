@@ -3,7 +3,7 @@ import PapperPlaneIcon from "@/components/icons/papper-plane-icon";
 function ChatDetailPage() {
   return (
     <main className="flex h-screen grow basis-[70%] flex-col justify-between border-x border-slate-700 pb-16 sm:pb-0">
-      <section className="flex gap-2 bg-slate-900 p-5 text-sm">
+      <section className="flex items-center gap-2 bg-slate-900 p-5 text-sm">
         <div className="basis-[10%]">
           <div className="aspect-square rounded-full bg-slate-800"></div>
         </div>

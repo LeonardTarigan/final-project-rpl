@@ -11,7 +11,7 @@ function HomePostCard({
 }: IPostCard) {
   return (
     <div className="flex gap-2 border-b border-slate-700 p-5 text-sm ">
-      <div className="basis-[15%]">
+      <div className="basis-[15%] sm:basis-[10%]">
         <div className="aspect-square w-full rounded-full bg-slate-700"></div>
       </div>
       <div className="flex basis-[90%] flex-col gap-2">

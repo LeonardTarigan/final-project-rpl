@@ -12,7 +12,7 @@ function BottomNav() {
 
   return (
     <nav
-      className={`fixed bottom-0 flex h-16 w-full justify-evenly border-t border-slate-700 bg-slate-950 px-5 py-3 sm:hidden ${
+      className={`fixed bottom-0 z-40 flex h-16 w-full justify-evenly border-t border-slate-700 bg-slate-950 px-5 py-3 sm:hidden ${
         excludedPaths.some((excludedPath) => path.startsWith(excludedPath))
           ? "hidden"
           : "visible"
