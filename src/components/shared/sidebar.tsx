@@ -14,10 +14,10 @@ function Sidebar() {
 
   return (
     <nav
-      className={`sticky top-0 flex h-screen basis-[30%] flex-col items-center justify-between p-5 ${
+      className={`sticky top-0 h-screen basis-[30%] flex-col items-center justify-between p-5 ${
         excludedPaths.some((excludedPath) => path.startsWith(excludedPath))
           ? "hidden"
-          : "visible"
+          : "visible hidden sm:flex"
       }`}
     >
       <div className="flex w-full flex-col items-center gap-10">
@@ -67,6 +67,15 @@ function Sidebar() {
           </li>
         </ul>
       </div>
+      <button className="flex w-full items-center gap-2 rounded-md p-2 text-start text-sm hover:bg-slate-800">
+        <div className="basis-[20%]">
+          <div className="aspect-square rounded-full bg-slate-700"></div>
+        </div>
+        <div className="basis-[80%]">
+          <h1 className="font-bold">Donald Truck</h1>
+          <p className="font-semibold text-slate-500">@donaltruk2231</p>
+        </div>
+      </button>
     </nav>
   );
 }

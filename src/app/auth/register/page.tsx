@@ -3,17 +3,21 @@
 import EnvelopeIcon from "@/components/icons/envelope-icon";
 import LockIcon from "@/components/icons/lock-icon";
 import GoogleLogo from "@/components/shared/google-logo";
-import Logo from "@/components/shared/logo";
+import Image from "next/image";
 import Link from "next/link";
 
 function RegisterPage() {
   return (
-    <main className="flex min-h-screen w-full items-center justify-center">
+    <main className="flex min-h-screen w-full items-center justify-center px-5 text-center sm:px-10">
       <div
         onSubmit={(e) => e.preventDefault()}
-        className="flex w-2/3 flex-col items-center gap-5 rounded-lg bg-slate-900 p-5"
+        className="flex w-full flex-col items-center gap-5 rounded-lg bg-slate-900 p-5 md:w-2/3"
       >
-        <Logo />
+        <div className="flex w-full items-center justify-center pb-10 pt-5">
+          <div className="relative aspect-[16/5] w-[30%]">
+            <Image src={"/logo.png"} alt="Logo" fill />
+          </div>
+        </div>
         <h1 className="text-2xl font-bold">Register New Account</h1>
 
         <div className="flex w-full flex-col gap-2">
