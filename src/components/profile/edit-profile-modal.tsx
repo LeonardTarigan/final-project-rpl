@@ -7,6 +7,7 @@ import XIcon from "../icons/x-icon";
 import { usePersistStore } from "@/hooks/usePersistStore";
 import { useAuthStore } from "@/store/useAuthStore";
 import Image from "next/image";
+import { changeUserProfile } from "@/firebase/profile";
 
 function EditProfileModal({ isOpen, setIsOpen }: IModal) {
   const user = usePersistStore(useAuthStore, (state) => state.user);
@@ -93,6 +94,12 @@ function EditProfileModal({ isOpen, setIsOpen }: IModal) {
             </div>
           </div>
           <button
+            onClick={() => {
+              changeUserProfile(user?.uid ?? "", {
+                displayName: displayName,
+                userName: userName,
+              }).then(() => setIsOpen(false));
+            }}
             disabled={
               displayName === user?.displayName && userName === user?.userName
             }
