@@ -1,10 +1,8 @@
 "use client";
 
 import HomePostCard from "@/components/home/post-card";
-import PostCard from "@/components/home/post-card";
 import SearchIcon from "@/components/icons/search-icon";
 import Dropdown from "@/components/shared/dropdown";
-import Logo from "@/components/shared/logo";
 import { useDropdown } from "@/hooks/useDropdown";
 import { IPostCard } from "@/utils/types.ts";
 import Image from "next/image";
