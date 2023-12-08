@@ -1,13 +1,13 @@
 "use client";
 
 import HomePostCard from "@/components/home/post-card";
-import PostCard from "@/components/home/post-card";
 import SearchIcon from "@/components/icons/search-icon";
 import Dropdown from "@/components/shared/dropdown";
-import Logo from "@/components/shared/logo";
-import { useDropdown } from "@/hooks/useDropdown";
+import { getAllLocations } from "@/firebase/location";
+import { useLocationStore } from "@/store/useLocationStore";
 import { IPostCard } from "@/utils/types.ts";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const dummyData: IPostCard = {
   name: "Donald Truck",
@@ -19,9 +19,9 @@ const dummyData: IPostCard = {
 };
 
 export default function Home() {
-  const { selectedOption, setSelectedOption } = useDropdown("All Locations");
+  const [selectedOption, setSelectedOption] = useState("All Locations");
 
-  const options = ["FILKOM", "FIA", "FEB"];
+  const { locations } = useLocationStore((state) => state);
 
   return (
     <main className="grow basis-[70%] border-x border-slate-700">
@@ -42,7 +42,7 @@ export default function Home() {
 
         <Dropdown
           selectedOption={selectedOption}
-          options={options}
+          options={locations}
           dispatch={setSelectedOption}
         />
       </section>

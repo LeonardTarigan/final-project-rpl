@@ -1,15 +1,27 @@
 import { useAddPostModalStore } from "@/store/useAddPostModalStore";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import XIcon from "../icons/x-icon";
 import Dropdown from "./dropdown";
+import { useLocationStore } from "@/store/useLocationStore";
+import { usePersistStore } from "@/hooks/usePersistStore";
+import useAuthStore from "@/store/useAuthStore";
+import { Timestamp } from "firebase/firestore";
+import { useProfilePostStore } from "@/store/useProfilePostStore";
 
 function AddPostModal() {
   const [selectedOption, setSelectedOption] = useState<string>("");
 
+  const titleRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+
   const { isAddPostModalOpen, closeAddPostModal } = useAddPostModalStore();
 
-  const options = ["FIA", "FILKOM", "FK", "FK", "FK", "FK", "FK", "FK"];
+  const options = useLocationStore((state) => state.locations);
+  const user = usePersistStore(useAuthStore, (state) => state.user);
+  const { addNewPost, fetchProfilePost } = useProfilePostStore(
+    (state) => state,
+  );
 
   return (
     <Transition
@@ -53,6 +65,7 @@ function AddPostModal() {
                 <input
                   id="title"
                   type="text"
+                  ref={titleRef}
                   className="w-full rounded-md bg-slate-800 px-4 py-2 font-normal text-white outline outline-2 outline-offset-2 outline-transparent placeholder:text-slate-500 focus:outline-white"
                 />
               </div>
@@ -63,6 +76,7 @@ function AddPostModal() {
                 <textarea
                   id="description"
                   rows={3}
+                  ref={descriptionRef}
                   className="w-full resize-none rounded-md bg-slate-800 px-4 py-2 font-normal text-white outline outline-2 outline-offset-2 outline-transparent placeholder:text-slate-500 focus:outline-white"
                 />
               </div>
@@ -79,8 +93,24 @@ function AddPostModal() {
               />
             </div>
             <div className="mt-5 aspect-square w-full rounded-md bg-slate-700"></div>
-            <button className="mt-10 w-full rounded-lg bg-sky-500 py-2 font-bold transition-all duration-150 hover:bg-sky-400 active:translate-y-1">
-              Save Changes
+            <button
+              onClick={() =>
+                user &&
+                addNewPost({
+                  owner: user,
+                  title: titleRef.current?.value ?? "",
+                  description: descriptionRef.current?.value ?? "",
+                  location: selectedOption,
+                  timestamp: Timestamp.now(),
+                  isResolved: false,
+                }).then(() => {
+                  fetchProfilePost(user.uid);
+                  closeAddPostModal();
+                })
+              }
+              className="mt-10 w-full rounded-lg bg-sky-500 py-2 font-bold transition-all duration-150 hover:bg-sky-400 active:translate-y-1"
+            >
+              Upload Post
             </button>
           </div>
         </Dialog.Panel>
