@@ -20,6 +20,17 @@ function ProfilePage() {
   const user = usePersistStore(useAuthStore, (state) => state.user);
   const { posts, fetchProfilePost } = useProfilePostStore((state) => state);
 
+  const filteredPosts = posts?.filter((post) => {
+    if (selectedOption === "All Status") {
+      return true;
+    } else if (selectedOption === "Resolved") {
+      return post.isResolved;
+    } else if (selectedOption === "Unresolved") {
+      return !post.isResolved;
+    }
+    return true;
+  });
+
   useEffect(() => {
     if (user) fetchProfilePost(user?.uid);
   }, [user]);
@@ -63,11 +74,11 @@ function ProfilePage() {
             />
           </section>
           <section>
-            {posts &&
-              posts.map((post, index) => {
+            {filteredPosts &&
+              filteredPosts.map((post, index) => {
                 return <ProfilePostCard key={index} {...post} />;
               })}
-            {posts?.length === 0 && (
+            {filteredPosts?.length === 0 && (
               <div className="h-full w-full p-5 font-semibold italic text-slate-500">
                 No Post :(
               </div>
