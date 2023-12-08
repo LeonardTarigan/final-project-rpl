@@ -26,7 +26,7 @@ function ChatProfileCard({
           <h2 className="text-base font-bold text-white">@{userName} </h2>
           <span> · </span>
           <span className="font-semibold text-slate-500">
-            {formatRelativeTime(timeStamp)}
+            {/* {formatRelativeTime(timeStamp)} */}
           </span>
         </div>
         <p className="line-clamp-1">{lastMessage}</p>
