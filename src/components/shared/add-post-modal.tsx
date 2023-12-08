@@ -1,11 +1,14 @@
 import { useAddPostModalStore } from "@/store/useAddPostModalStore";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import XIcon from "../icons/x-icon";
 import Dropdown from "./dropdown";
 
 function AddPostModal() {
   const [selectedOption, setSelectedOption] = useState<string>("");
+
+  const titleRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
   const { isAddPostModalOpen, closeAddPostModal } = useAddPostModalStore();
 

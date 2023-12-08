@@ -15,9 +15,13 @@ function HomePostCard({
         <div className="aspect-square w-full rounded-full bg-slate-700"></div>
       </div>
       <div className="flex basis-[90%] flex-col gap-2">
+        <h1 className="text-base font-bold">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita,
+          aperiam.
+        </h1>
         <div>
           <h2>
-            <span className="font-bold md:text-lg">{name} </span>
+            <span className="font-bold">{name} </span>
             <span className="font-semibold text-slate-500">@{userName}</span>
           </h2>
           <div className="font-semibold text-slate-500">

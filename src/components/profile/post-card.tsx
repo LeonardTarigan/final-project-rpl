@@ -30,9 +30,13 @@ function ProfilePostCard({
           <div className="aspect-square w-full rounded-full bg-slate-700"></div>
         </div>
         <div className="flex basis-[90%] flex-col gap-2">
+          <h1 className="text-base font-bold">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+            odio.
+          </h1>
           <div>
             <div className="flex items-center gap-1">
-              <h2 className="text-base font-bold">{name}</h2>
+              <h2 className="font-semibold">{name}</h2>
               <span className="font-semibold text-slate-500">@{userName}</span>
             </div>
 
