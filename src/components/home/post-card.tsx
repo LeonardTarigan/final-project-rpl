@@ -25,7 +25,7 @@ function HomePostCard({
             <span className="font-semibold text-slate-500">@{userName}</span>
           </h2>
           <div className="font-semibold text-slate-500">
-            <span>{formatRelativeTime(timeStamp)}</span>
+            {/* <span>{formatRelativeTime(timeStamp)}</span> */}
             <span> · </span>
             <span>{location}</span>
           </div>

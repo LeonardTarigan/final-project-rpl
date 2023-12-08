@@ -1,25 +1,37 @@
-export function formatRelativeTime(date: Date): string {
-  const now: Date = new Date();
-  const diffInSeconds: number = Math.floor(
-    (now.getTime() - date.getTime()) / 1000,
-  );
+import { Timestamp } from "firebase/firestore";
 
-  if (diffInSeconds < 60) {
-    return `${diffInSeconds} second${diffInSeconds === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 3600) {
-    const minutes: number = Math.floor(diffInSeconds / 60);
-    return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 86400) {
-    const hours: number = Math.floor(diffInSeconds / 3600);
-    return `${hours} hour${hours === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 2592000) {
-    const days: number = Math.floor(diffInSeconds / 86400);
-    return `${days} day${days === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 31536000) {
-    const months: number = Math.floor(diffInSeconds / 2592000);
-    return `${months} month${months === 1 ? "" : "s"} ago`;
+function formatTime(time: number, unit: string): string {
+  const roundedTime = Math.floor(time);
+  return roundedTime === 1
+    ? `${roundedTime} ${unit} ago`
+    : `${roundedTime} ${unit}s ago`;
+}
+
+export function formatRelativeTime(timestamp: Timestamp) {
+  const now = new Date().getTime();
+  const date = timestamp.toDate();
+  const timeDifference = now - date.getTime();
+  const seconds = timeDifference / 1000;
+  const minutes = seconds / 60;
+  const hours = minutes / 60;
+  const days = hours / 24;
+  const weeks = days / 7;
+  const months = days / 30;
+  const years = days / 365;
+
+  if (seconds < 60) {
+    return formatTime(seconds, "second");
+  } else if (minutes < 60) {
+    return formatTime(minutes, "minute");
+  } else if (hours < 24) {
+    return formatTime(hours, "hour");
+  } else if (days < 7) {
+    return formatTime(days, "day");
+  } else if (weeks < 4) {
+    return formatTime(weeks, "week");
+  } else if (months < 12) {
+    return formatTime(months, "month");
   } else {
-    const years: number = Math.floor(diffInSeconds / 31536000);
-    return `${years} year${years === 1 ? "" : "s"} ago`;
+    return formatTime(years, "year");
   }
 }

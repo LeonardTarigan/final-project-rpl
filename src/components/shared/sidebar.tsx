@@ -14,6 +14,9 @@ import Logo from "./logo";
 import { useAuthStore } from "@/store/useAuthStore";
 import { usePersistStore } from "@/hooks/usePersistStore";
 import Image from "next/image";
+import { useEffect } from "react";
+import { getAllLocations } from "@/firebase/location";
+import { useLocationStore } from "@/store/useLocationStore";
 
 function Sidebar() {
   const path = usePathname();
@@ -22,6 +25,12 @@ function Sidebar() {
   const { openAddPostModal } = useAddPostModalStore();
 
   const excludedPaths = ["/auth"];
+
+  const { setLocation } = useLocationStore((state) => state);
+
+  useEffect(() => {
+    getAllLocations(setLocation);
+  }, []);
 
   return (
     <>

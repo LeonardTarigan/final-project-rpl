@@ -21,11 +21,7 @@ const dummyData: IPostCard = {
 export default function Home() {
   const [selectedOption, setSelectedOption] = useState("All Locations");
 
-  const { locations, setLocation } = useLocationStore((state) => state);
-
-  useEffect(() => {
-    getAllLocations(setLocation);
-  }, []);
+  const { locations } = useLocationStore((state) => state);
 
   return (
     <main className="grow basis-[70%] border-x border-slate-700">

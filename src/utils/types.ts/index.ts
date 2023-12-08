@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { Dispatch, SetStateAction } from "react";
 
 export interface IPostCard {
@@ -24,6 +25,9 @@ export interface UserPost {
   description: string;
   location: string;
   imageURL?: string;
+  timestamp: Timestamp;
+  isResolved: boolean;
+  id?: string;
 }
 
 export interface Chat {
