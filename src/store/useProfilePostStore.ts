@@ -38,31 +38,41 @@ export const useProfilePostStore = create<ProfilePostStore>((set, get) => ({
 
       const querySnapshot = await getDocs(q);
 
+      const uniquePostIds = new Set(get().posts?.map((post) => post.id));
+
       querySnapshot.forEach(async (doc) => {
-        const ownerDocRef = doc.data().owner as DocumentReference;
-        const ownerDoc = await getDoc(ownerDocRef);
+        const postId = doc.id;
 
-        const { description, isResolved, location, timestamp, title } =
-          doc.data() as UserPost;
+        if (!uniquePostIds.has(postId)) {
+          const ownerDocRef = doc.data().owner as DocumentReference;
+          const ownerDoc = await getDoc(ownerDocRef);
 
-        if (ownerDoc.exists()) {
-          const newPost: UserPost = {
-            title: title,
-            description: description,
-            timestamp: timestamp,
-            isResolved: isResolved,
-            location: location,
-            owner: ownerDoc.data() as User,
-            id: doc.id,
-          };
+          const { description, isResolved, location, timestamp, title } =
+            doc.data() as UserPost;
 
-          set((prev) => {
-            const newPosts = [...(prev.posts as UserPost[]), newPost];
+          if (ownerDoc.exists()) {
+            const newPost: UserPost = {
+              title: title,
+              description: description,
+              timestamp: timestamp,
+              isResolved: isResolved,
+              location: location,
+              owner: ownerDoc.data() as User,
+              id: postId,
+            };
 
-            newPosts.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds);
+            set((prev) => {
+              const newPosts = [...(prev.posts as UserPost[]), newPost];
 
-            return { posts: newPosts };
-          });
+              newPosts.sort(
+                (a, b) => b.timestamp.seconds - a.timestamp.seconds,
+              );
+
+              uniquePostIds.add(postId);
+
+              return { posts: newPosts };
+            });
+          }
         }
       });
     } catch (error) {

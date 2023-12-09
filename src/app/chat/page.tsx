@@ -20,7 +20,7 @@ function ChatPage() {
   const user = usePersistStore(useAuthStore, (state) => state.user);
 
   useEffect(() => {
-    if (!user) window.location.href = "/auth/login";
+    if (user !== null) window.location.href = "/auth/login";
   }, [user]);
 
   return (
