@@ -1,3 +1,5 @@
+"use client";
+
 import PapperPlaneIcon from "@/components/icons/papper-plane-icon";
 import { usePersistStore } from "@/hooks/usePersistStore";
 import useAuthStore from "@/store/useAuthStore";
