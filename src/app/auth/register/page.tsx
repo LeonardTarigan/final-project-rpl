@@ -14,7 +14,7 @@ function RegisterPage() {
 
   useEffect(() => {
     if (user) window.location.href = "/";
-  }, []);
+  }, [user]);
 
   return (
     <>

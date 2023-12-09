@@ -12,22 +12,36 @@ export interface AuthStore {
 
 export const useAuthStore = create<AuthStore>()(
   persist(
-    (set) => {
+    (set, get) => {
+      const localStorageData = JSON.parse(
+        localStorage.getItem("user-data") || "{}",
+      );
+
+      const initialState: AuthStore = localStorageData;
+
       const unsubscribeAuthState = onAuthStateChanged(auth, (user) => {
         if (user) {
           const userRef = doc(db, "users", user.uid);
 
-          onSnapshot(userRef, (snapshot) => {
-            const userData = snapshot.data() as User | undefined;
-            set({ user: userData });
-          });
+          if (
+            localStorageData?.state?.state?.user ||
+            auth.currentUser?.uid === get().user?.uid
+          ) {
+            onSnapshot(userRef, (snapshot) => {
+              const userData = snapshot.data() as User | undefined;
+
+              if (userData !== get().user) {
+                set({ user: userData });
+              }
+            });
+          }
         } else {
           set({ user: undefined });
         }
       });
 
       return {
-        user: undefined,
+        ...initialState,
         setUser: (state: User) => set({ user: state }),
       };
     },

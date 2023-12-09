@@ -1,31 +1,34 @@
 import { formatRelativeTime } from "@/utils/global-functions/format-relative-time";
-import { IPostCard } from "@/utils/types.ts";
+import { IPostCard, UserPost } from "@/utils/types.ts";
 import MessageDotsIcon from "../icons/message-dots-icon";
+import Image from "next/image";
 
 function HomePostCard({
-  name,
-  userName,
-  timeStamp,
   location,
   description,
-}: IPostCard) {
+  owner,
+  id,
+  title,
+  timestamp,
+}: UserPost) {
   return (
     <div className="flex gap-2 border-b border-slate-700 p-5 text-sm ">
       <div className="basis-[15%] sm:basis-[10%]">
-        <div className="aspect-square w-full rounded-full bg-slate-700"></div>
+        <div className="relative -z-10 aspect-square w-full overflow-hidden rounded-full bg-slate-700">
+          <Image src={owner.photoURL ?? ""} alt="Profile Picture" fill />
+        </div>
       </div>
       <div className="flex basis-[90%] flex-col gap-2">
-        <h1 className="text-base font-bold">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita,
-          aperiam.
-        </h1>
+        <h1 className="text-base font-bold">{title}</h1>
         <div>
           <h2>
-            <span className="font-bold">{name} </span>
-            <span className="font-semibold text-slate-500">@{userName}</span>
+            <span className="font-bold">{owner.displayName} </span>
+            <span className="font-semibold text-slate-500">
+              @{owner.userName}
+            </span>
           </h2>
           <div className="font-semibold text-slate-500">
-            {/* <span>{formatRelativeTime(timeStamp)}</span> */}
+            <span>{formatRelativeTime(timestamp)}</span>
             <span> · </span>
             <span>{location}</span>
           </div>

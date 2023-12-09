@@ -19,6 +19,10 @@ const dummyData: IChatProfileCard = {
 function ChatPage() {
   const user = usePersistStore(useAuthStore, (state) => state.user);
 
+  useEffect(() => {
+    if (user !== null) window.location.href = "/auth/login";
+  }, [user]);
+
   return (
     <>
       {user && (

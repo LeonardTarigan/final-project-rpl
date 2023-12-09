@@ -4,7 +4,10 @@ import HomePostCard from "@/components/home/post-card";
 import SearchIcon from "@/components/icons/search-icon";
 import Dropdown from "@/components/shared/dropdown";
 import { getAllLocations } from "@/firebase/location";
+import { usePersistStore } from "@/hooks/usePersistStore";
+import useAuthStore from "@/store/useAuthStore";
 import { useLocationStore } from "@/store/useLocationStore";
+import { useHomePostStore } from "@/store/userHomePostStore";
 import { IPostCard } from "@/utils/types.ts";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -21,7 +24,17 @@ const dummyData: IPostCard = {
 export default function Home() {
   const [selectedOption, setSelectedOption] = useState("All Locations");
 
+  const user = usePersistStore(useAuthStore, (state) => state.user);
+
   const { locations } = useLocationStore((state) => state);
+  const { posts, fetchPersonalizedPost, fetchAllPost } = useHomePostStore(
+    (state) => state,
+  );
+
+  useEffect(() => {
+    if (user) fetchPersonalizedPost(user?.uid);
+    if (!user) fetchAllPost();
+  }, [user]);
 
   return (
     <main className="grow basis-[70%] border-x border-slate-700">
@@ -47,13 +60,14 @@ export default function Home() {
         />
       </section>
       <section className="min-h-screen">
-        <HomePostCard {...dummyData} />
-        <HomePostCard {...dummyData} />
-        <HomePostCard {...dummyData} />
-        <HomePostCard {...dummyData} />
-        <HomePostCard {...dummyData} />
-        <HomePostCard {...dummyData} />
-        <HomePostCard {...dummyData} />
+        {posts?.map((post) => {
+          return <HomePostCard key={post.id} {...post} />;
+        })}
+        {posts?.length === 0 && (
+          <div className="h-full w-full p-5 font-semibold italic text-slate-500">
+            No Post :(
+          </div>
+        )}
       </section>
     </main>
   );

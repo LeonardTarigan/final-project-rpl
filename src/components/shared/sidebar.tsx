@@ -1,9 +1,14 @@
 "use client";
 
+import { getAllLocations } from "@/firebase/location";
 import { useAddPostModalStore } from "@/store/useAddPostModalStore";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useLocationStore } from "@/store/useLocationStore";
 import { Menu, Transition } from "@headlessui/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import HomeIcon from "../icons/home-icon";
 import LogoutIcon from "../icons/logout-icon";
 import MessagesIcon from "../icons/messages-icon";
@@ -11,16 +16,10 @@ import PlusCircleIcon from "../icons/plus-circle-icon";
 import UserIcon from "../icons/user-icon";
 import AddPostModal from "./add-post-modal";
 import Logo from "./logo";
-import { useAuthStore } from "@/store/useAuthStore";
-import { usePersistStore } from "@/hooks/usePersistStore";
-import Image from "next/image";
-import { useEffect } from "react";
-import { getAllLocations } from "@/firebase/location";
-import { useLocationStore } from "@/store/useLocationStore";
 
 function Sidebar() {
   const path = usePathname();
-  const user = usePersistStore(useAuthStore, (state) => state.user);
+  const { user } = useAuthStore((state) => state);
 
   const { openAddPostModal } = useAddPostModalStore();
 

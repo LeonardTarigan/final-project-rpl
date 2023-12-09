@@ -33,6 +33,7 @@ function ProfilePage() {
 
   useEffect(() => {
     if (user) fetchProfilePost(user?.uid);
+    // if (user !== null) window.location.href = "/auth/login";
   }, [user]);
 
   return (

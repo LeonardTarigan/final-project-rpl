@@ -16,7 +16,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (user) window.location.href = "/";
-  }, []);
+  }, [user]);
 
   return (
     <>
