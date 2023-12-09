@@ -1,6 +1,15 @@
 import PapperPlaneIcon from "@/components/icons/papper-plane-icon";
+import { usePersistStore } from "@/hooks/usePersistStore";
+import useAuthStore from "@/store/useAuthStore";
+import { useEffect } from "react";
 
 function ChatDetailPage() {
+  const user = usePersistStore(useAuthStore, (state) => state.user);
+
+  useEffect(() => {
+    if (!user) window.location.href = "/auth/login";
+  }, [user]);
+
   return (
     <main className="flex h-screen grow basis-[70%] flex-col justify-between border-x border-slate-700 pb-16 sm:pb-0">
       <section className="flex items-center gap-2 bg-slate-900 p-5 text-sm">
